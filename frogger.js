@@ -1,14 +1,15 @@
 var pane = $('#pane'),
     box = $('#box'),
-    maxValue = pane.width() - box.width(),
+    maxWidth = pane.width() - box.width() 
+    maxHeight = pane.height() - box.height() 
     keysPressed = {},
-    distancePerIteration = 3;
+    distancePerIteration = 5;
 
 function calculateNewValue(oldValue, keyCode1, keyCode2) {
     var newValue = parseInt(oldValue, 10)
                    - (keysPressed[keyCode1] ? distancePerIteration : 0)
                    + (keysPressed[keyCode2] ? distancePerIteration : 0);
-    return newValue < 0 ? 0 : newValue > maxValue ? maxValue : newValue;
+    return newValue < 0 ? 0 : newValue > maxHeight ? maxHeight: newValue;
 }
 
 $(window).keydown(function(event) { keysPressed[event.which] = true; });

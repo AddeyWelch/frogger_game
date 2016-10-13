@@ -9,14 +9,10 @@ h1 {
   text-align: center;
 }
 
-#myCanvas {
-}
-
 #pane {
     position:relative;
-    width:300px; height:300px;
+    width:500px; height:500px;
     border:2px solid red;
-    text-indent: 20px;
 }
     
 #box {
