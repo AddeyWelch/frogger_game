@@ -3,7 +3,7 @@ var pane = $('#pane'),
     maxWidth = pane.width() - box.width() 
     maxHeight = pane.height() - box.height() 
     keysPressed = {},
-    distancePerIteration = 5;
+    distancePerIteration = 3;
 
 function calculateNewValue(oldValue, keyCode1, keyCode2) {
     var newValue = parseInt(oldValue, 10)
@@ -28,3 +28,10 @@ setInterval(function() {
 }, 20);
 
 var car = $('#car')
+
+
+
+
+var water = $('#water')
+
+
