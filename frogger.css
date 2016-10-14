@@ -14,7 +14,7 @@ h1 {
     position:relative;
     width:500px; height:500px;
     border:2px solid #030729;
-		background-color: #707070;
+		background-color: #3b7513;
 }
 
 #box {
@@ -31,20 +31,21 @@ h1 {
 }
 
 #street {
+	margin: 30px 0 10px 0;
   position:relative; :20px;
   width:500px; height:100px;
   background-color: black;
 }
 
-#lanes {
+/*#lanes {
   position:relative; :0px;
   width:500px; height:10px;
   background-color: yellow;
-}
+}*/
 
 #water {
   position:relative; :0px;
-  width: 500px; height:100px;
+  width: 500px; height: 150px;
   background-color: #0066ff;
 }
 
