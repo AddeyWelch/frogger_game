@@ -14,7 +14,7 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
     if (newValue === maxHeight - pane.height() + 40){
       if (!won) {
         won = true;
-        window.alert("YOU WON!");
+        window.alert("YOU WON!\n\nREFRESH PAGE FOR A NEW GAME! :)");
       }
     };
     return newValue < 0 ? 0 : newValue > maxHeight ? maxHeight: newValue;
