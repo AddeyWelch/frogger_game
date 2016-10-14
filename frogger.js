@@ -1,15 +1,22 @@
 var pane = $('#pane'),
     box = $('#box'),
-    maxWidth = pane.width() - box.width() 
-    maxHeight = pane.height() - box.height() 
+    maxWidth = pane.width() - box.width()
+    maxHeight = pane.height() - box.height()
     keysPressed = {},
-    distancePerIteration = 3;
+    distancePerIteration = 5
+    won = false;
 
 function calculateNewValue(oldValue, keyCode1, keyCode2) {
     var newValue = parseInt(oldValue, 10)
                    - (keysPressed[keyCode1] ? distancePerIteration : 0)
                    + (keysPressed[keyCode2] ? distancePerIteration : 0);
     // var maxVal = keycode == LEFT ? maxwidth : keycode == UP ? maxhright
+    if (newValue === maxHeight - pane.height() + 40){
+      if (!won) {
+        won = true;
+        window.alert("YOU WON!");
+      }
+    };
     return newValue < 0 ? 0 : newValue > maxHeight ? maxHeight: newValue;
 }
 
@@ -26,12 +33,4 @@ setInterval(function() {
         }
     });
 }, 20);
-
 var car = $('#car')
-
-
-
-
-var water = $('#water')
-
-
