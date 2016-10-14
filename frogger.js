@@ -9,6 +9,7 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
     var newValue = parseInt(oldValue, 10)
                    - (keysPressed[keyCode1] ? distancePerIteration : 0)
                    + (keysPressed[keyCode2] ? distancePerIteration : 0);
+    // var maxVal = keycode == LEFT ? maxwidth : keycode == UP ? maxhright
     return newValue < 0 ? 0 : newValue > maxHeight ? maxHeight: newValue;
 }
 
@@ -25,3 +26,5 @@ setInterval(function() {
         }
     });
 }, 20);
+
+var car = $('#car')
