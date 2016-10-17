@@ -2,33 +2,52 @@ var pane = $('#pane'),
     box = $('#box'),
     car = $('#car'),
     maxWidth = pane.width() - box.width()
-    maxHeight = pane.height() - box.height()
-    carW = pane.width() - car.width();
-    keysPressed = {},
+maxHeight = pane.height() - box.height()
+carW = pane.width() - car.width();
+keysPressed = {},
     distancePerIteration = 5
-    won = false;
+won = false;
 
 function calculateNewValue(oldValue, keyCode1, keyCode2) {
-    var newValue = parseInt(oldValue, 10)
-                   - (keysPressed[keyCode1] ? distancePerIteration : 0)
-                   + (keysPressed[keyCode2] ? distancePerIteration : 0);
+    var newValue = parseInt(oldValue, 10) -
+        (keysPressed[keyCode1] ? distancePerIteration : 0) +
+        (keysPressed[keyCode2] ? distancePerIteration : 0);
     // var maxVal = keycode == LEFT ? maxwidth : keycode == UP ? maxhright
-    if (newValue === 0 && keyCode1 === 38){
-      if (!won) {
-        won = true;
-        window.alert("YOU WON!\n\nREFRESH PAGE FOR A NEW GAME! :)");
-      }
+    if (newValue === 0 && keyCode1 === 38) {
+        if (!won) {
+            won = true;
+            window.alert("YOU WON!\n\nREFRESH PAGE FOR A NEW GAME! :)");
+        }
     };
-    return newValue < 0 ? 0 : newValue > maxHeight ? maxHeight: newValue;
+    return newValue < 0 ? 0 : newValue > maxHeight ? maxHeight : newValue;
 }
 
 function move_car(oldValue) {
-  var newValue = parseInt(oldValue, 10) + 2 * distancePerIteration;
-  return newValue < 0 ? 0 : newValue > carW ? 0: newValue;
+    var newValue = parseInt(oldValue, 10) + distancePerIteration;
+
+    var box_top = parseInt(box.position().top, 10);
+    var box_bottom = parseInt(box_top + box.height(), 10);
+    var box_left = parseInt(box.position().left, 10);
+    var box_right = parseInt(box_left + box.width(), 10);
+
+    var car_top = parseInt(car.position().top, 10);
+    var car_bottom = parseInt(car_top + car.height(), 10);
+    var car_left = parseInt(car.position().left, 10);
+    var car_right = parseInt(car_left + car.width(), 10);
+
+    if (car_right >= box_right && box_left >= car_left && car_top <= box_top && car_bottom >= box_bottom) {
+        window.alert('he gon');
+    }
+
+    return newValue < 0 ? 0 : newValue > carW ? 0 : newValue;
 }
 
-$(window).keydown(function(event) { keysPressed[event.which] = true; });
-$(window).keyup(function(event) { keysPressed[event.which] = false; });
+$(window).keydown(function(event) {
+    keysPressed[event.which] = true;
+});
+$(window).keyup(function(event) {
+    keysPressed[event.which] = false;
+});
 
 setInterval(function() {
     box.css({
@@ -44,5 +63,4 @@ setInterval(function() {
             return move_car(oldValue);
         }
     });
-
 });
