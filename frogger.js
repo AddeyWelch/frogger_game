@@ -1,7 +1,9 @@
 var pane = $('#pane'),
     box = $('#box'),
+    car = $('#car'),
     maxWidth = pane.width() - box.width()
     maxHeight = pane.height() - box.height()
+    carW = pane.width() - car.width();
     keysPressed = {},
     distancePerIteration = 5
     won = false;
@@ -11,7 +13,7 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
                    - (keysPressed[keyCode1] ? distancePerIteration : 0)
                    + (keysPressed[keyCode2] ? distancePerIteration : 0);
     // var maxVal = keycode == LEFT ? maxwidth : keycode == UP ? maxhright
-    if (newValue === maxHeight - pane.height() + 40){
+    if (newValue === 0 && keyCode1 === 38){
       if (!won) {
         won = true;
         window.alert("YOU WON!\n\nREFRESH PAGE FOR A NEW GAME! :)");
@@ -20,17 +22,27 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
     return newValue < 0 ? 0 : newValue > maxHeight ? maxHeight: newValue;
 }
 
+function move_car(oldValue) {
+  var newValue = parseInt(oldValue, 10) + 2 * distancePerIteration;
+  return newValue < 0 ? 0 : newValue > carW ? 0: newValue;
+}
+
 $(window).keydown(function(event) { keysPressed[event.which] = true; });
 $(window).keyup(function(event) { keysPressed[event.which] = false; });
 
 setInterval(function() {
     box.css({
-        left: function(index ,oldValue) {
+        left: function(index, oldValue) {
             return calculateNewValue(oldValue, 37, 39);
         },
         top: function(index, oldValue) {
             return calculateNewValue(oldValue, 38, 40);
         }
     });
-}, 20);
-var car = $('#car')
+    car.css({
+        left: function(index, oldValue) {
+            return move_car(oldValue);
+        }
+    });
+
+});
