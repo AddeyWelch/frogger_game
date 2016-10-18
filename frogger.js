@@ -17,6 +17,7 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
             won = true;
             window.alert("YOU WON!!! :)");
 
+            keysPressed = {};
             box.css("left", "235px");
             won = false;
             return 480;
