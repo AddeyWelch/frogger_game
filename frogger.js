@@ -1,8 +1,8 @@
 var pane = $('#pane'),
     box = $('#box'),
     car = $('#car'),
-    maxWidth = pane.width() - box.width()
-maxHeight = pane.height() - box.height()
+    maxWidth = pane.width() - box.width(),
+maxHeight = pane.height() - box.height(),
 carW = pane.width() - car.width();
 keysPressed = {},
     distancePerIteration = 5
@@ -12,11 +12,14 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
     var newValue = parseInt(oldValue, 10) -
         (keysPressed[keyCode1] ? distancePerIteration : 0) +
         (keysPressed[keyCode2] ? distancePerIteration : 0);
-    // var maxVal = keycode == LEFT ? maxwidth : keycode == UP ? maxhright
     if (newValue === 0 && keyCode1 === 38) {
         if (!won) {
             won = true;
             window.alert("YOU WON!\n\nREFRESH PAGE FOR A NEW GAME! :)");
+
+            box.css("left", "235px");
+            won = false;
+            return 480;
         }
     };
     return newValue < 0 ? 0 : newValue > maxHeight ? maxHeight : newValue;
@@ -37,6 +40,10 @@ function move_car(oldValue) {
 
     if (car_right >= box_right && box_left >= car_left && car_top <= box_top && car_bottom >= box_bottom) {
         window.alert('he gon');
+        box.css("left", "235px");
+        box.css("top", "480px");
+        keysPressed = {};
+        return 0;
     }
 
     return newValue < 0 ? 0 : newValue > carW ? 0 : newValue;
