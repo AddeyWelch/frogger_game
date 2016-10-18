@@ -15,9 +15,11 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
     if (newValue === 0 && keyCode1 === 38) {
         if (!won) {
             won = true;
-            window.alert("YOU WON!!! :)");
+            swal({
+                title: "WINNER!",
+                text: "You won!",
+                imageUrl: "http://www.clipartkid.com/images/484/jumping-frog-clip-art-clipart-panda-free-clipart-images-Ma6vfB-clipart.png"});
 
-            keysPressed = {};
             box.css("left", "235px");
             won = false;
             return 480;
@@ -40,12 +42,16 @@ function move_car(oldValue) {
     var car_right = parseInt(car_left + car.width(), 10);
 
     if (car_right >= box_right && box_left >= car_left && car_top <= box_top && car_bottom >= box_bottom) {
-        window.alert('he gon');
+        swal({
+            title: "OUCH!!",
+            text: "THAT ONE HURT",
+            imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png" });
         box.css("left", "235px");
         box.css("top", "480px");
         keysPressed = {};
-        return 0;
+        return 0; 
     }
+    
 
     return newValue < 0 ? 0 : newValue > carW ? 0 : newValue;
 }
