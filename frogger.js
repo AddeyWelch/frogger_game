@@ -15,7 +15,7 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
     if (newValue === 0 && keyCode1 === 38) {
         if (!won) {
             won = true;
-            window.alert("YOU WON!\n\nREFRESH PAGE FOR A NEW GAME! :)");
+            window.alert("YOU WON!!! :)");
 
             box.css("left", "235px");
             won = false;
