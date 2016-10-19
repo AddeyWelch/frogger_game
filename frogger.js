@@ -1,10 +1,12 @@
 var pane = $('#pane'),
     box = $('#box'),
-    car = $('#car'),
+    car1 = $('#car1'),
+    car2 = $('#car2'),
     maxWidth = pane.width() - box.width(),
     maxHeight = pane.height() - box.height(),
-    carW = pane.width() - car.width();
-keysPressed = {},
+    carW = pane.width() - car1.width();
+    carX = pane.width() - car2.width();
+    keysPressed = {},
     distancePerIteration = 3,
     alertUp = false,
     won = false;
@@ -34,20 +36,45 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
     return newValue < 0 ? 0 : newValue > maxHeight ? maxHeight : newValue;
 }
 
-function move_car(oldValue) {
-    var newValue = parseInt(oldValue, 10) + distancePerIteration;
+function car_hits_frog(car, frog) {
+    var car_top = parseInt(car.position().top, 10);
+    var car_bottom = parseInt(car_top + car.height(), 10);
+    var car_left = parseInt(car.position().left, 10);
+    var car_right = parseInt(car_left + car.width(), 10);
+    
+    var cy = (car_top + car_bottom) / 2;
+    var cx = (car_left + car_right) / 2;
 
     var box_top = parseInt(box.position().top, 10);
     var box_bottom = parseInt(box_top + box.height(), 10);
     var box_left = parseInt(box.position().left, 10);
     var box_right = parseInt(box_left + box.width(), 10);
 
-    var car_top = parseInt(car.position().top, 10);
-    var car_bottom = parseInt(car_top + car.height(), 10);
-    var car_left = parseInt(car.position().left, 10);
-    var car_right = parseInt(car_left + car.width(), 10);
+    var by = (box_top + box_bottom) / 2;
+    var bx = (box_left + box_right) / 2;
 
-    if (car_right >= box_right && box_left >= car_left && car_top <= box_top && car_bottom >= box_bottom) {
+    return Math.abs(cy - by) < 10 && Math.abs(cx - bx) < 10;
+}
+
+function move_car(oldValue, distance) {
+    var newValue = parseInt(oldValue, 10) + distance;
+
+    var box_top = parseInt(box.position().top, 10);
+    var box_bottom = parseInt(box_top + box.height(), 10);
+    var box_left = parseInt(box.position().left, 10);
+    var box_right = parseInt(box_left + box.width(), 10);
+
+    var car_top = parseInt(car1.position().top, 10);
+    var car_bottom = parseInt(car_top + car1.height(), 10);
+    var car_left = parseInt(car1.position().left, 10);
+    var car_right = parseInt(car_left + car1.width(), 10);
+
+    var car_top = parseInt(car2.position().top, 10);
+    var car_bottom = parseInt(car_top + car2.height(), 10);
+    var car_left = parseInt(car2.position().right, 10);
+    var car_right = parseInt(car_left + car2.width(), 10);
+
+    if (car_hits_frog(car1, box) || car_hits_frog(car2, box)) {
         alertUp = true;
         keysPressed = {};
         swal({
@@ -63,7 +90,7 @@ function move_car(oldValue) {
     }
 
 
-    return newValue < 0 ? 0 : newValue > carW ? 0 : newValue;
+    return newValue < 0 ? carW - newValue : newValue > carW ? 0 : newValue;
 }
 
 $(window).keydown(function(event) {
@@ -84,9 +111,15 @@ setInterval(function() {
             return calculateNewValue(oldValue, 38, 40);
         }
     });
-    car.css({
+    car1.css({
         left: function(index, oldValue) {
-            return move_car(oldValue);
+            return move_car(oldValue, 5);
+        }
+    });
+
+    car2.css({
+        left: function(index, oldValue) {
+            return move_car(oldValue, -3);
         }
     });
 });
