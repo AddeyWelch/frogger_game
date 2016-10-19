@@ -5,7 +5,7 @@ var pane = $('#pane'),
 maxHeight = pane.height() - box.height(),
 carW = pane.width() - car.width();
 keysPressed = {},
-    distancePerIteration = 5
+    distancePerIteration = 3
 won = false;
 
 function calculateNewValue(oldValue, keyCode1, keyCode2) {
@@ -49,9 +49,9 @@ function move_car(oldValue) {
         box.css("left", "235px");
         box.css("top", "480px");
         keysPressed = {};
-        return 0; 
+        return 0;
     }
-    
+
 
     return newValue < 0 ? 0 : newValue > carW ? 0 : newValue;
 }
