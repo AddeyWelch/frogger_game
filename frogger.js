@@ -2,11 +2,12 @@ var pane = $('#pane'),
     box = $('#box'),
     car = $('#car'),
     maxWidth = pane.width() - box.width(),
-maxHeight = pane.height() - box.height(),
-carW = pane.width() - car.width();
+    maxHeight = pane.height() - box.height(),
+    carW = pane.width() - car.width();
 keysPressed = {},
-    distancePerIteration = 3
-won = false;
+    distancePerIteration = 3,
+    alertUp = false,
+    won = false;
 
 function calculateNewValue(oldValue, keyCode1, keyCode2) {
     var newValue = parseInt(oldValue, 10) -
@@ -15,10 +16,15 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
     if (newValue === 0 && keyCode1 === 38) {
         if (!won) {
             won = true;
+            alertUp = true;
+            keysPressed = {};
             swal({
                 title: "WINNER!",
                 text: "You won!",
-                imageUrl: "http://www.clipartkid.com/images/484/jumping-frog-clip-art-clipart-panda-free-clipart-images-Ma6vfB-clipart.png"});
+                imageUrl: "http://www.clipartkid.com/images/484/jumping-frog-clip-art-clipart-panda-free-clipart-images-Ma6vfB-clipart.png"
+            }, function() {
+              alertUp = false;
+            });
 
             box.css("left", "235px");
             won = false;
@@ -42,13 +48,17 @@ function move_car(oldValue) {
     var car_right = parseInt(car_left + car.width(), 10);
 
     if (car_right >= box_right && box_left >= car_left && car_top <= box_top && car_bottom >= box_bottom) {
+        alertUp = true;
+        keysPressed = {};
         swal({
             title: "OUCH!!",
             text: "THAT ONE HURT",
-            imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png" });
+            imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png"
+        }, function() {
+          alertUp = false;
+        });
         box.css("left", "235px");
         box.css("top", "480px");
-        keysPressed = {};
         return 0;
     }
 
@@ -57,10 +67,12 @@ function move_car(oldValue) {
 }
 
 $(window).keydown(function(event) {
-    keysPressed[event.which] = true;
+    if (!alertUp)
+        keysPressed[event.which] = true;
 });
 $(window).keyup(function(event) {
-    keysPressed[event.which] = false;
+    if (!alertUp)
+        keysPressed[event.which] = false;
 });
 
 setInterval(function() {
