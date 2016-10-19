@@ -2,10 +2,14 @@ var pane = $('#pane'),
     box = $('#box'),
     car1 = $('#car1'),
     car2 = $('#car2'),
+    bike = $('#bike'),
+    boat = $('#boat'),
     maxWidth = pane.width() - box.width(),
     maxHeight = pane.height() - box.height(),
     carW = pane.width() - car1.width();
     carX = pane.width() - car2.width();
+    bikeY = pane.width() - bike.width();
+    boatY = pane.width() - boat.width();
     keysPressed = {},
     distancePerIteration = 3,
     alertUp = false,
@@ -93,6 +97,42 @@ function move_car(oldValue, distance) {
     return newValue < 0 ? carW - newValue : newValue > carW ? 0 : newValue;
 }
 
+function move_bike(oldValue, distance) {
+    var newValue = parseInt(oldValue, 10) + distance;
+
+    var box_top = parseInt(box.position().top, 10);
+    var box_bottom = parseInt(box_top + box.height(), 10);
+    var box_left = parseInt(box.position().left, 10);
+    var box_right = parseInt(box_left + box.width(), 10);
+
+    var bike_top = parseInt(bike.position().top, 10);
+    var bike_bottom = parseInt(bike_top + bike.height(), 10);
+    var bike_left = parseInt(bike.position().left, 10);
+    var bike_right = parseInt(bike_left + bike.width(), 10);
+
+    if (car_hits_frog(bike, box)) {
+        alertUp = true;
+        keysPressed = {};
+        swal({
+            title: "OUCH!!",
+            text: "THAT ONE HURT",
+            imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png"
+        }, function() {
+          alertUp = false;
+        });
+        box.css("left", "235px");
+        box.css("top", "480px");
+        return 0;
+    }
+
+
+    return newValue < 0 ? bikeY - newValue : newValue > bikeY ? 0 : newValue;
+}
+
+function move_boat() {
+
+}
+
 $(window).keydown(function(event) {
     if (!alertUp)
         keysPressed[event.which] = true;
@@ -120,6 +160,18 @@ setInterval(function() {
     car2.css({
         left: function(index, oldValue) {
             return move_car(oldValue, -3);
+        }
+    });
+
+    bike.css({
+        left: function(index, oldValue) {
+            return move_bike(oldValue, 5)
+        }
+    });
+
+    boat.css({
+        left: function(index, oldValue) {
+            return move_boat(oldValue, -3)
         }
     });
 });
