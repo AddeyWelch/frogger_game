@@ -19,7 +19,7 @@ function calculateNewValue(oldValue, keyCode1, keyCode2) {
             alertUp = true;
             keysPressed = {};
             swal({
-                title: "WINNER!",
+                title: "TOAD-A-LY",
                 text: "You won!",
                 imageUrl: "http://www.clipartkid.com/images/484/jumping-frog-clip-art-clipart-panda-free-clipart-images-Ma6vfB-clipart.png"
             }, function() {
