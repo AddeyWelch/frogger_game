@@ -114,8 +114,8 @@ function move_bike(oldValue, distance) {
         alertUp = true;
         keysPressed = {};
         swal({
-            title: "OUCH!!",
-            text: "BE CAREFUL NEXT TIME!",
+            title: "How'd you BIKE that?",
+            text: "Looks like you're having a WHEELIE bad time!",
             imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png"
         }, function() {
           alertUp = false;
@@ -146,8 +146,8 @@ function move_boat(oldValue, distance) {
         alertUp = true;
         keysPressed = {};
         swal({
-            title: "OUCH!!",
-            text: "BE CAREFUL NEXT TIME!",
+            title: "YOU'RE DEAD!!",
+            text: "How aBOAT it!",
             imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png"
         }, function() {
           alertUp = false;
