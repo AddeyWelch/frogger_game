@@ -115,7 +115,7 @@ function move_bike(oldValue, distance) {
         keysPressed = {};
         swal({
             title: "OUCH!!",
-            text: "THAT ONE HURT",
+            text: "BE CAREFUL NEXT TIME!",
             imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png"
         }, function() {
           alertUp = false;
@@ -129,8 +129,36 @@ function move_bike(oldValue, distance) {
     return newValue < 0 ? bikeY - newValue : newValue > bikeY ? 0 : newValue;
 }
 
-function move_boat() {
+function move_boat(oldValue, distance) {
+    var newValue = parseInt(oldValue, 10) + distance;
 
+    var box_top = parseInt(box.position().top, 10);
+    var box_bottom = parseInt(box_top + box.height(), 10);
+    var box_left = parseInt(box.position().left, 10);
+    var box_right = parseInt(box_left + box.width(), 10);
+
+    var boat_top = parseInt(boat.position().top, 10);
+    var boat_bottom = parseInt(boat_top + boat.height(), 10);
+    var boat_left = parseInt(boat.position().left, 10);
+    var boat_right = parseInt(boat_left + boat.width(), 10);
+
+    if (car_hits_frog(boat, box)) {
+        alertUp = true;
+        keysPressed = {};
+        swal({
+            title: "OUCH!!",
+            text: "BE CAREFUL NEXT TIME!",
+            imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png"
+        }, function() {
+          alertUp = false;
+        });
+        box.css("left", "235px");
+        box.css("top", "480px");
+        return 0;
+    }
+
+
+    return newValue < 0 ? boatY - newValue : newValue > boatY ? 0 : newValue;
 }
 
 $(window).keydown(function(event) {
@@ -165,13 +193,13 @@ setInterval(function() {
 
     bike.css({
         left: function(index, oldValue) {
-            return move_bike(oldValue, 5)
+            return move_bike(oldValue, 2)
         }
     });
 
     boat.css({
         left: function(index, oldValue) {
-            return move_boat(oldValue, -3)
+            return move_boat(oldValue, -0.1)
         }
     });
 });
