@@ -84,7 +84,7 @@ function move_car(oldValue, distance) {
         swal({
             title: "YOU CROAKED",
             text: "How Ribbiting....",
-            imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png"
+            imageUrl: "http://3kq1ia1xtss81c6fb13n3q6d.wpengine.netdna-cdn.com/wp-content/uploads/2013/07/dead-frog.png"
         }, function() {
           alertUp = false;
         });
