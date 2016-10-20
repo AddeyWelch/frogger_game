@@ -45,7 +45,7 @@ function car_hits_frog(car, frog) {
     var car_bottom = parseInt(car_top + car.height(), 10);
     var car_left = parseInt(car.position().left, 10);
     var car_right = parseInt(car_left + car.width(), 10);
-    
+
     var cy = (car_top + car_bottom) / 2;
     var cx = (car_left + car_right) / 2;
 
@@ -82,8 +82,8 @@ function move_car(oldValue, distance) {
         alertUp = true;
         keysPressed = {};
         swal({
-            title: "OUCH!!",
-            text: "THAT ONE HURT",
+            title: "YOU CROAKED",
+            text: "How Ribbiting....",
             imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png"
         }, function() {
           alertUp = false;
