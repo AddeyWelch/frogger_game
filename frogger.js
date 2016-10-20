@@ -149,7 +149,7 @@ function move_boat(oldValue, distance) {
         swal({
             title: "YOU'RE DEAD!!",
             text: "How aBOAT it!",
-            imageUrl: "http://1.bp.blogspot.com/_8H7tRK4d-0Y/Sg8y338UEaI/AAAAAAAADTU/9HVhkUONZr8/s320/frog-on-crutches.png"
+            imageUrl: "http://www.pollywogsworldoffrogs.com/frogs/frog-trans350.png"
         }, function() {
           alertUp = false;
         });
