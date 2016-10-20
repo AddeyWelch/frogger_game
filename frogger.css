@@ -36,7 +36,7 @@ h1 {
 
 #car2 {
   position:absolute;
-  width:100px; height:60px;
+  width:80px; height:60px;
   background-color:blue;
   z-index: 1;
   border-radius: 16px;
@@ -44,25 +44,25 @@ h1 {
 
 #street {
 	margin: 30px 0px 10px 0;
-  position:relative; :20px;
+  position:absolute;
   width:500px; height:135px;
   background-color: black;
 }
 
 #water {
-  position:relative; :0px;
+  position:absolute;
   width: 500px; height: 150px;
   background-color: #0066ff;
 }
 
 #sidewalk {
-  position: relative; :0px;
+  position:absolute;
   width: 500px; height:20px;
   background-color:#595959;
 }
 
 #bike {
-  position: relative; :2px;
+  position:absolute;
   width: 15px; height: 15px;
   background-color: yellow;
   z-index: 1;
@@ -70,8 +70,8 @@ h1 {
 }
 
 #boat {
-  position: relative; :0px;
-  width: 200px; height: 80px;
+  position:absolute;
+  width:80px; height:60px;
   background-color: white;
   z-index: 1;
   border-radius: 16px;
@@ -90,9 +90,14 @@ h1 {
   border-radius: 2rem;
 }
 
-.heart-shape {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  background-color: rgba(250,184,66, 0.8);
+.Row {
+    display: table;
+    width: 30rem; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+
+.Column {
+    display: table-cell;
+    background-color: none; /*Optional*/
 }

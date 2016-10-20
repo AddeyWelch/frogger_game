@@ -4,12 +4,13 @@ var pane = $('#pane'),
     car2 = $('#car2'),
     bike = $('#bike'),
     boat = $('#boat'),
+    paneW = pane.width(),
     maxWidth = pane.width() - box.width(),
     maxHeight = pane.height() - box.height(),
     carW = pane.width() - car1.width();
     carX = pane.width() - car2.width();
     bikeY = pane.width() - bike.width();
-    boatY = pane.width() - boat.width();
+    boat_X = pane.width() - boat.width();
     keysPressed = {},
     distancePerIteration = 3,
     alertUp = false,
@@ -158,7 +159,8 @@ function move_boat(oldValue, distance) {
     }
 
 
-    return newValue < 0 ? boatY - newValue : newValue > boatY ? 0 : newValue;
+    return newValue < 0 ? boat_X: newValue > boat_X ? boat_X: newValue;
+    // return newValue < 0 ? boat_X : newValue;
 }
 
 $(window).keydown(function(event) {
