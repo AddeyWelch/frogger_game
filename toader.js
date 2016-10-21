@@ -12,7 +12,7 @@ var pane = $('#pane'),
     bikeY = pane.width() - bike.width();
     boat_X = pane.width() - boat.width();
     keysPressed = {},
-    distancePerIteration = 3,
+    distancePerIteration = 1,
     alertUp = false,
     won = false;
 
@@ -69,15 +69,15 @@ function move_car(oldValue, distance) {
     var box_left = parseInt(box.position().left, 10);
     var box_right = parseInt(box_left + box.width(), 10);
 
-    var car_top = parseInt(car1.position().top, 10);
-    var car_bottom = parseInt(car_top + car1.height(), 10);
-    var car_left = parseInt(car1.position().left, 10);
-    var car_right = parseInt(car_left + car1.width(), 10);
+    var car_top = parseInt(car1.position().top, 1);
+    var car_bottom = parseInt(car_top + car1.height(), 1);
+    var car_left = parseInt(car1.position().left, 1);
+    var car_right = parseInt(car_left + car1.width(), 1);
 
-    var car_top = parseInt(car2.position().top, 10);
-    var car_bottom = parseInt(car_top + car2.height(), 10);
-    var car_left = parseInt(car2.position().right, 10);
-    var car_right = parseInt(car_left + car2.width(), 10);
+    var car_top = parseInt(car2.position().top, 1);
+    var car_bottom = parseInt(car_top + car2.height(), 1);
+    var car_left = parseInt(car2.position().right, 1);
+    var car_right = parseInt(car_left + car2.width(), 1);
 
     if (car_hits_frog(car1, box) || car_hits_frog(car2, box)) {
         alertUp = true;

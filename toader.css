@@ -90,14 +90,29 @@ h1 {
   border-radius: 2rem;
 }
 
-.Row {
-    display: table;
-    width: 30rem; /*Optional*/
-    table-layout: fixed; /*Optional*/
-    border-spacing: 10px; /*Optional*/
+#heart_1 {
+  color: red;
+  width:20px; height:20px;
 }
 
-.Column {
-    display: table-cell;
-    background-color: none; /*Optional*/
+#heart_2 {
+  color: red;
+  width:20px; height:20px;
 }
+
+#heart_3 {
+  color: red;
+  width:20px; height:20px;
+}
+
+#heart_4 {
+  color: red;
+  width:20px; height:20px;
+}
+
+#heart_5 {
+  color: red;
+  width:20px; height:20px;
+}
+
+
