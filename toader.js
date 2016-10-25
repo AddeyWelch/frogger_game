@@ -80,6 +80,8 @@ function move_car(oldValue, distance) {
     var car_right = parseInt(car_left + car2.width(), 1);
 
     if (car_hits_frog(car1, box) || car_hits_frog(car2, box)) {
+        takeAwayLife();
+        takeAwayLife();
         alertUp = true;
         keysPressed = {};
         swal({
@@ -162,6 +164,18 @@ function move_boat(oldValue, distance) {
     return newValue < 0 ? boat_X: newValue > boat_X ? boat_X: newValue;
     // return newValue < 0 ? boat_X : newValue;
 }
+
+function takeAwayLife() {
+    var lives = document.getElementById("heart-container");
+    var hearts = lives.childNodes;
+    if (hearts.length > 1) {
+        lives.removeChild(lives.childNodes[0]);
+    }
+    else {
+        alert("Game Over!!!");
+    }
+}
+
 
 $(window).keydown(function(event) {
     if (!alertUp)
