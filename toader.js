@@ -114,6 +114,8 @@ function move_bike(oldValue, distance) {
     var bike_right = parseInt(bike_left + bike.width(), 10);
 
     if (car_hits_frog(bike, box)) {
+        takeAwayLife();
+        takeAwayLife();
         alertUp = true;
         keysPressed = {};
         swal({
@@ -146,6 +148,8 @@ function move_boat(oldValue, distance) {
     var boat_right = parseInt(boat_left + boat.width(), 10);
 
     if (car_hits_frog(boat, box)) {
+        takeAwayLife();
+        takeAwayLife();
         alertUp = true;
         keysPressed = {};
         swal({
