@@ -176,7 +176,7 @@ function takeAwayLife() {
         lives.removeChild(lives.childNodes[0]);
     }
     else {
-        alert("Game Over!!!");
+        document.getElementById("lives").innerHTML = "GAME OVER!!"
     }
 }
 
